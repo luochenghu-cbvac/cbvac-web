@@ -26,7 +26,7 @@ public class AdminUserDao {
     private JdbcTemplate slaveJdbcTemplate;
 
     public AdminUser findById(String name) {
-        String sql = "select * from admin_users where id=?";
+        String sql = "select * from admin_users where name =?";
         Object[] params = {
                 name
         };
@@ -46,7 +46,7 @@ public class AdminUserDao {
                     .id(resultSet.getLong("id"))
                     .name(resultSet.getString("name"))
                     .createTime(resultSet.getString("create_time"))
-                    .passWord(resultSet.getString("name"))
+                    .passWord(resultSet.getString("pass_word"))
                     .build();
         }
     }
