@@ -14,8 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Builder
-public class User {
+public class AdminUser {
     private long id;
 
     private String name;
+
+    private String passWord;
+
+    private String createTime;
 }

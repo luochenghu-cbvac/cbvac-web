@@ -1,12 +1,12 @@
 
 spring:
   masterdatasource:
-    url: jdbc:mysql://106.12.201.12:3311/cbvac
+    url: jdbc:mysql://127.0.0.1:3311/cbv_dev
     username: root
     password: fNty2u8awl
     platform: mysql
   slavedatasource:
-    url: jdbc:mysql://106.12.201.12:3311/cbvac
+    url: jdbc:mysql://127.0.0.1:3311/cbv_dev
     username: root
     password: fNty2u8awl
     platform: mysql

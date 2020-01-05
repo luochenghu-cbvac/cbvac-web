@@ -1,6 +1,6 @@
 package com.cbvac.web.dao;
 
-import com.cbvac.web.bean.User;
+import com.cbvac.web.bean.AdminUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,33 +18,35 @@ import java.util.List;
  */
 @Slf4j
 @Repository
-public class UserDao {
+public class AdminUserDao {
     @Autowired
     private JdbcTemplate masterJdbcTemplate;
 
     @Autowired
     private JdbcTemplate slaveJdbcTemplate;
 
-    public User findById(long id) {
+    public AdminUser findById(String name) {
         String sql = "select * from user where id=?";
         Object[] params = {
-                id
+                name
         };
-        final List<User> users = masterJdbcTemplate.query(sql, params, new UserRowMapper());
-        final List<User> users1 = slaveJdbcTemplate.query(sql, params, new UserRowMapper());
+        final List<AdminUser> adminUsers = masterJdbcTemplate.query(sql, params, new UserRowMapper());
+        final List<AdminUser> users1 = slaveJdbcTemplate.query(sql, params, new UserRowMapper());
         System.out.println(users1);
-        if (CollectionUtils.isEmpty(users)) {
+        if (CollectionUtils.isEmpty(adminUsers)) {
             return null;
         }
-        return users.get(0);
+        return adminUsers.get(0);
     }
 
-    static class UserRowMapper implements RowMapper<User> {
+    static class UserRowMapper implements RowMapper<AdminUser> {
         @Override
-        public User mapRow(ResultSet resultSet, int i) throws SQLException {
-            return User.builder()
+        public AdminUser mapRow(ResultSet resultSet, int i) throws SQLException {
+            return AdminUser.builder()
                     .id(resultSet.getLong("id"))
                     .name(resultSet.getString("name"))
+                    .createTime(resultSet.getString("create_time"))
+                    .passWord(resultSet.getString("name"))
                     .build();
         }
     }

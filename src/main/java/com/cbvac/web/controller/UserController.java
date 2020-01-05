@@ -1,6 +1,6 @@
 package com.cbvac.web.controller;
 
-import com.cbvac.web.service.UserService;
+import com.cbvac.web.service.AdminUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private final UserService userService;
+    private final AdminUserService adminUserService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(AdminUserService adminUserService) {
+        this.adminUserService = adminUserService;
     }
 
     @GetMapping("detail")
-    public Object userInfo(@RequestParam long id){
-        return userService.findById(id);
+    public Object userInfo(@RequestParam String name) {
+        return adminUserService.findById(name);
     }
 
 }
