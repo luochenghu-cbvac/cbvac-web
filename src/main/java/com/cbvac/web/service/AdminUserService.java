@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author shaojieyue
- * Created at 2019-07-18 14:54
+ * @author : Tiger
+ * @date : 2020-01-05 19:48
  */
 
 @Service
@@ -19,7 +19,7 @@ public class AdminUserService {
     @Autowired
     private AdminUserDao adminUserDao;
 
-    public AdminUser findById(String name) {
-        return adminUserDao.findById(name);
+    public AdminUser findByLoginName(String loginName) {
+        return adminUserDao.findByLoginName(loginName);
     }
 }

@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * @author shaojieyue
- * Created at 2020-01-04 20:44
+ * @author : Tiger
+ * @date : 2020-01-05 19:48
  */
 @Slf4j
 @Repository
@@ -25,10 +25,10 @@ public class AdminUserDao {
     @Autowired
     private JdbcTemplate slaveJdbcTemplate;
 
-    public AdminUser findById(String name) {
-        String sql = "select * from admin_users where name =?";
+    public AdminUser findByLoginName(String loginName) {
+        String sql = "select * from admin_users where login_name =?";
         Object[] params = {
-                name
+                loginName
         };
         final List<AdminUser> adminUsers = masterJdbcTemplate.query(sql, params, new UserRowMapper());
         final List<AdminUser> users1 = slaveJdbcTemplate.query(sql, params, new UserRowMapper());
@@ -43,8 +43,10 @@ public class AdminUserDao {
         @Override
         public AdminUser mapRow(ResultSet resultSet, int i) throws SQLException {
             return AdminUser.builder()
-                    .id(resultSet.getLong("id"))
-                    .name(resultSet.getString("name"))
+                    .userId(resultSet.getLong("id"))
+                    .userNo(resultSet.getString("user_no"))
+                    .userName(resultSet.getString("user_name"))
+                    .loginName(resultSet.getString("login_name"))
                     .createTime(resultSet.getString("create_time"))
                     .passWord(resultSet.getString("pass_word"))
                     .build();

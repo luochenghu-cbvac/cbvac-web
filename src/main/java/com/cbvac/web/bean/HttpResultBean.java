@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author : Tiger
  * @date : 2020-01-05 19:48
@@ -14,16 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 @Builder
-public class AdminUser {
-    private long userId;
+public class HttpResultBean {
 
-    private String userName;
-
-    private String userNo;
-
-    private String loginName;
-
-    private String passWord;
-
-    private String createTime;
+    private String status;
+    private String message;
+    private List dataList;
+    private Map<String, Object> data;
 }
