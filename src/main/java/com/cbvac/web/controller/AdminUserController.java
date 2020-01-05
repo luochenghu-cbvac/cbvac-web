@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/api/v1/user")
-public class UserController {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+@RequestMapping("/api/v1/admin")
+public class AdminUserController {
+    private static final Logger logger = LoggerFactory.getLogger(AdminUserController.class);
 
     private final AdminUserService adminUserService;
 
-    public UserController(AdminUserService adminUserService) {
+    public AdminUserController(AdminUserService adminUserService) {
         this.adminUserService = adminUserService;
     }
 
-    @GetMapping("detail")
-    public Object userInfo(@RequestParam String name) {
+    @GetMapping("login")
+    public Object adminLogin(@RequestParam String name) {
         return adminUserService.findById(name);
     }
 

@@ -26,7 +26,7 @@ public class AdminUserDao {
     private JdbcTemplate slaveJdbcTemplate;
 
     public AdminUser findById(String name) {
-        String sql = "select * from user where id=?";
+        String sql = "select * from admin_users where id=?";
         Object[] params = {
                 name
         };
